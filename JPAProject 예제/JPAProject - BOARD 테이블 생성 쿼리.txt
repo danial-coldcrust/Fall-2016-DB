@@ -1,0 +1,26 @@
+CREATE TABLE BOARD
+(
+    seq        INT             NOT NULL, 
+    title      VARCHAR2(20)    NULL, 
+    writer     VARCHAR2(20)    NULL, 
+    content    VARCHAR2(20)    NULL, 
+    regDate    DATE            NULL, 
+    cnt        INT             NULL, 
+    CONSTRAINT BOARD_PK PRIMARY KEY (seq)
+)
+/
+
+CREATE SEQUENCE BOARD_SEQ
+START WITH 1
+INCREMENT BY 1;
+/
+
+CREATE OR REPLACE TRIGGER BOARD_seq_AI_TRG
+BEFORE INSERT ON BOARD 
+REFERENCING NEW AS NEW FOR EACH ROW 
+BEGIN 
+    SELECT BOARD_SEQ.NEXTVAL
+    INTO: NEW.seq
+    FROM DUAL;
+END;
+/
