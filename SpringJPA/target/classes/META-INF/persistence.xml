@@ -6,6 +6,7 @@
 	<persistence-unit name="SpringJPA">
 
 		<class>com.ppp.db.customer.CustomerVO</class>
+		<class>com.ppp.db.staff.StaffVO</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 			<!-- 스프링에서 대체하는 DataSource로 대체 

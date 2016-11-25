@@ -15,6 +15,7 @@
 		<hr>
 		<a href="customerLogin.do">로그인</a><br><br><br>
 		<a href="getCustomerList.do">고객목록</a><br><br><br>
+		
 	</center>
 </body>
 </html>

@@ -20,15 +20,15 @@
 </tr>
 <tr>
 	<td bgcolor="orange" width="70">고객 이름</td>
-	<td align="left"><input name="customer_name" type="text" value="${customer.customer_name}"/>
+	<td align="left"><input name="customer_name" type="text" value="${customer.customer_name}"/></td>
 </tr>
 <tr>
 	<td bgcolor="orange">전화 번호</td>
-	<td align="left">${customer.customer_phonenum}</td>
+	<td align="left"><input name="customer_name" type="text" value="${customer.customer_phonenum}"/></td>
 </tr>
 <tr>
 	<td bgcolor="orange">고객 주소</td>
-	<td align="left">${customer.customer_address}</td>
+	<td align="left"><input name="customer_name" type="text" value="${customer.customer_address}"/></td>
 </tr>
 <tr>
 	<td colspan="2" align="center"><input type="submit" value="정보 수정"/></td>
