@@ -3,12 +3,14 @@ package com.ppp.db.view.customer;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+//import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.ppp.db.customer.CustomerService;
@@ -53,13 +55,46 @@ public class CustomerController {
 		model.addAttribute("customer", customerService.getCustomer(vo));
 		return "getCustomer.jsp";
 	}
-	
+	/*getCustomerList설정 시CustomerVO에 searchKeyword, searchCondition 변수없으면 매개변수에 
+	@RequestParam(value="searchCondition",
+	defaultValue="customer_num", required=false) String condition,
+	@RequestParam(value="searchKeyword", defaultValue="", required=false)
+	String keyword,  추가*/
 	@RequestMapping("/getCustomerList.do")
-	public String getCustomerList(@RequestParam(value="searchCondition",
-			defaultValue="customer_num", required=false) String condition,
-			@RequestParam(value="searchKeyword", defaultValue="", required=false)
-			String keyword, CustomerVO vo, Model model){
+	public String getCustomerList(CustomerVO vo, Model model){
+		// null check
+		if(vo.getSearchCondition() == null) vo.setSearchCondition("CUSTOMER_NUM");
+		if(vo.getSearchKeyword() == null) vo.setSearchKeyword("");
+		// model 정보저장
 		model.addAttribute("customerList", customerService.getCustomerList(vo));
 		return "getCustomerList.jsp";
 	}
+	
+	/*로그인 시작*/
+	// 허상인가?... get,post따로 지정해야한다했는데 잘됨
+		/*@RequestMapping(value="/customerLogin.do", method=RequestMethod.GET)
+		public String loingView(CustomerVO vo){
+			return "customerLogin.jsp";
+		}*/
+		/*@RequestMapping(value="/customerLogin.do", method=RequestMethod.POST)
+		public String loing(CustomerVO vo){
+			if(customerService.getCustomer(vo) != null) return "getCustomerList.do";
+			else return "customerLogin.jsp";
+		}*/
+	@RequestMapping("/customerLogin.do")
+	public String loing(CustomerVO vo,HttpSession session){
+		if(customerService.getCustomer(vo) != null){
+			CustomerVO customer = customerService.getCustomer(vo);
+			session.setAttribute("c_name",customer.getCustomer_name());
+			return "getCustomerList.do";
+		}
+		else return "customerLogin.jsp";
+	}
+	@RequestMapping("/customerLogOut.do")
+	public String logout(HttpSession session){
+		session.invalidate();
+		return "customerLogin.jsp";
+	}
+	/*로그인 종료*/
+	
 }

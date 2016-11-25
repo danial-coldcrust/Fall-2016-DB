@@ -15,6 +15,8 @@ public class CustomerVO  {
 	private String customer_name;
 	private String customer_phonenum;
 	private String customer_address;
+	private String searchCondition;
+	private String searchKeyword;
 	
 	public int getCustomer_num() {
 		return customer_num;
@@ -39,6 +41,19 @@ public class CustomerVO  {
 	}
 	public void setCustomer_address(String customer_address) {
 		this.customer_address = customer_address;
+	}
+	
+	public String getSearchCondition() {
+		return searchCondition;
+	}
+	public void setSearchCondition(String searchCondition) {
+		this.searchCondition = searchCondition;
+	}
+	public String getSearchKeyword() {
+		return searchKeyword;
+	}
+	public void setSearchKeyword(String searchKeyword) {
+		this.searchKeyword = searchKeyword;
 	}
 	@Override
 	public String toString(){
