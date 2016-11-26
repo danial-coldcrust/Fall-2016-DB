@@ -37,9 +37,12 @@ public class CustomerController {
 		customerService.insertCustomer(vo);
 		return "getCustomerList.do";
 	}
-	
+	/*updateCustomer에서는 @ModelAttribute("customer") 로 써야할것같은데 ?..
+		@ModelAttribute로 하거나 없애면 잘돌아가네 ?
+		customer로 되어있을땐 jsp에서 수정이 안됐음	
+	*/
 	@RequestMapping("/updateCustomer.do")
-	public String updateCustomer(@ModelAttribute("customer") CustomerVO vo){
+	public String updateCustomer(@ModelAttribute CustomerVO vo){
 		customerService.updateCustomer(vo);
 		return "getCustomerList.do";
 	}
@@ -49,12 +52,14 @@ public class CustomerController {
 		customerService.deleteCustomer(vo);
 		return "getCustomerList.do";
 	}
-	
+	/*
+	한페이지에서 추가/삭제/검색/수정 구현해서 필요없어짐
 	@RequestMapping("/getCustomer.do")
 	public String getCustomer(CustomerVO vo, Model model){
 		model.addAttribute("customer", customerService.getCustomer(vo));
 		return "getCustomer.jsp";
 	}
+	*/
 	/*getCustomerList설정 시CustomerVO에 searchKeyword, searchCondition 변수없으면 매개변수에 
 	@RequestParam(value="searchCondition",
 	defaultValue="customer_num", required=false) String condition,
