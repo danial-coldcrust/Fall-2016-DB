@@ -16,7 +16,7 @@
 <table border="1" cellpadding="0" cellspacing="0">
 <tr>
 	<td bgcolor="orange">직원 번호</td>
-	<td align="left">${staff.staff_num}</td>
+	<td align="left"><input name="office_num" type="text" value="${staff.staff_num}"/></td>
 </tr>
 <tr>
 	<td bgcolor="orange">지점 번호</td>

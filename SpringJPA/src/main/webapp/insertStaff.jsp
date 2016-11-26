@@ -14,6 +14,11 @@
 <form action="insertStaff.do" method="post">
 <table border="1" cellpadding="0" cellspacing="0">
 <tr>
+	<td bgcolor="orange">직원 번호</td>
+	<td align="left"><input type="text" name="staff_num"/></td>
+	<!-- name값을 StaffVO의 변수명과 동일하게하면 get/setters에 의해 자동 맵핑 -->
+</tr>
+<tr>
 	<td bgcolor="orange">지점 번호</td>
 	<td align="left"><input type="text" name="office_num"/></td>
 	<!-- name값을 StaffVO의 변수명과 동일하게하면 get/setters에 의해 자동 맵핑 -->

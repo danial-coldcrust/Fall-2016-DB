@@ -70,9 +70,17 @@ public class StaffController {
 	@RequestMapping("/staffLogin.do")
 	public String loing(StaffVO vo,HttpSession session){
 		if(staffService.getStaff(vo) != null){
-			StaffVO staff = staffService.getStaff(vo);
+			StaffVO staff = staffService.getStaff(vo);//getStaff 메소드는 staff_num으로만 체크
 			session.setAttribute("s_name", staff.getStaff_name());
-			return "getStaffList.do";
+			//그러므로 비밀번호체크하는 기능을 넣어야함! 아래는 그에 해당하는 소스
+			// 로그인할때 받아온 패스워드가 6보다 작으면 아래 서브스트링할떄오류발생하므로 예외처리!
+			if ((vo.getStaff_residentnum().length())!=6) return "staffLogin.jsp";
+			// 6자리이면서 , DB에 저장된 staff의 주민번호 앞자리 6개랑 패스워드 6자리가 동일하면 
+			if (vo.getStaff_residentnum().substring(0, 5).equals(
+					staff.getStaff_residentnum().substring(0, 5)))
+				return "getStaffList.do";
+			else
+				return "staffLogin.jsp";
 		}
 		else return "staffLogin.jsp";
 	}

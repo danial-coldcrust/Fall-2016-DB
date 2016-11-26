@@ -4,10 +4,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 
 @Entity
-@Table(name = "CUSTOMER")
+@Table(name="CUSTOMER")	//테이블과 맵핑 설정안하면 클래스이름과 같은 테이블이 자동으로 맵핑
 public class CustomerVO  {
 	@Id
 	@GeneratedValue
@@ -15,7 +16,9 @@ public class CustomerVO  {
 	private String customer_name;
 	private String customer_phonenum;
 	private String customer_address;
+	@Transient	//해당변수를 매핑 대상에서 제외
 	private String searchCondition;
+	@Transient
 	private String searchKeyword;
 	
 	public int getCustomer_num() {

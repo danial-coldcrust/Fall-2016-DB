@@ -84,9 +84,15 @@ public class CustomerController {
 	@RequestMapping("/customerLogin.do")
 	public String loing(CustomerVO vo,HttpSession session){
 		if(customerService.getCustomer(vo) != null){
+			//getCustomer는 customer_num로 비교해서 가져옴 그러므로 전화번호를 비교하는 구문이 필요
 			CustomerVO customer = customerService.getCustomer(vo);
 			session.setAttribute("c_name",customer.getCustomer_name());
-			return "getCustomerList.do";
+			// 패스워드와 전화번호가 동일한지 비교하는 조건식
+			if(vo.getCustomer_phonenum().equals(
+					customer.getCustomer_phonenum()))
+				return "getCustomerList.do";
+			else
+				return "customerLogin.jsp";
 		}
 		else return "customerLogin.jsp";
 	}

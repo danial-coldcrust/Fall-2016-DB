@@ -1,29 +1,31 @@
 package com.ppp.db.staff;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="STAFF")
 public class StaffVO  {
 	@Id
-	@GeneratedValue
-	private int staff_num;
+	//@GeneratedValue
+	private String staff_num;
 	private int office_num;
 	private String staff_job;
 	private String staff_name;
 	private String staff_phonenum;
 	private String staff_residentnum;
 	private String staff_address;
+	@Transient //해당변수를 매핑 대상에서 제외
 	private String searchCondition;
+	@Transient
 	private String searchKeyword;
 	
-	public int getStaff_num() {
+	public String getStaff_num() {
 		return staff_num;
 	}
-	public void setStaff_num(int staff_num) {
+	public void setStaff_num(String staff_num) {
 		this.staff_num = staff_num;
 	}
 	public int getOffice_num() {
