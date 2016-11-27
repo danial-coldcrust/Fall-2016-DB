@@ -17,6 +17,7 @@
 		<a href="getCustomerList.do">고객목록</a><br><br><br>
 		<a href="staffLogin.do">직원로그인</a><br><br><br>
 		<a href="getStaffList.do">직원목록</a><br><br><br>
+		<a href="getOfficeList.do">지점 목록</a><br><br><br>
 	</center>
 </body>
 </html>

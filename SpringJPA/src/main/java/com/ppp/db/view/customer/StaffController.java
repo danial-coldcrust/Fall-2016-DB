@@ -50,13 +50,14 @@ public class StaffController {
 		staffService.deleteStaff(vo);
 		return "getStaffList.do";
 	}
-	
+	/*
+	한페이지에서 추가/삭제/검색/수정 구현해서 필요없어짐
 	@RequestMapping("/getStaff.do")
 	public String getStaff(StaffVO vo, Model model){
 		model.addAttribute("staff", staffService.getStaff(vo));
 		return "getStaff.jsp";
 	}
-	
+	*/
 	@RequestMapping("/getStaffList.do")
 	public String getStaffList(StaffVO vo, Model model){
 		// null check
@@ -66,7 +67,7 @@ public class StaffController {
 		model.addAttribute("staffList", staffService.getStaffList(vo));
 		return "getStaffList.jsp";
 	}
-	
+
 	@RequestMapping("/staffLogin.do")
 	public String loing(StaffVO vo,HttpSession session){
 		if(staffService.getStaff(vo) != null){
