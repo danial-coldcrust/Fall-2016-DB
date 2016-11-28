@@ -8,6 +8,9 @@
 		<class>com.ppp.db.customer.CustomerVO</class>
 		<class>com.ppp.db.staff.StaffVO</class>
 		<class>com.ppp.db.office.OfficeVO</class>
+		<class>com.ppp.db.item.ItemVO</class>
+		<class>com.ppp.db.delivery.SendVO</class>
+		<class>com.ppp.db.receipt.ReceiptVO</class>
 		<properties>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
 			<!-- 스프링에서 대체하는 DataSource로 대체 

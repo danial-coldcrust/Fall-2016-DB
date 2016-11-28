@@ -100,7 +100,7 @@ CREATE TABLE send
 (
     send_num          INT             NOT NULL, 
     item_num          INT             NOT NULL, 
-    staff_num         INT             NOT NULL, 
+    staff_num         VARCHAR2(20)             NOT NULL, 
     date              VARCHAR2(20)    NULL, 
     time              VARCHAR2(20)    NULL, 
     item_position     VARCHAR2(30)    NULL, 
@@ -142,7 +142,7 @@ CREATE TABLE receipt
     receipt_num     INT             NOT NULL, 
     customer_num    INT             NOT NULL, 
     item_num        INT             NOT NULL, 
-    staff_num       INT             NOT NULL, 
+    staff_num       VARCHAR2(20)             NOT NULL, 
     receipt_date    VARCHAR2(20)    NULL, 
     send_type       VARCHAR2(20)    NULL, 
     pay_type        VARCHAR2(20)    NULL, 

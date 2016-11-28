@@ -42,7 +42,7 @@ public class CustomerController {
 		customer로 되어있을땐 jsp에서 수정이 안됐음	
 	*/
 	@RequestMapping("/updateCustomer.do")
-	public String updateCustomer(@ModelAttribute CustomerVO vo){
+	public String updateCustomer(CustomerVO vo){
 		customerService.updateCustomer(vo);
 		return "getCustomerList.do";
 	}

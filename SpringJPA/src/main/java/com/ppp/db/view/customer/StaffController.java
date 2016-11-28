@@ -39,8 +39,8 @@ public class StaffController {
 		return "getStaffList.do";
 	}
 	
-	@RequestMapping("/updatetStaff.do")
-	public String updateStaff(@ModelAttribute("staff") StaffVO vo){
+	@RequestMapping("/updateStaff.do")
+	public String updateStaff(StaffVO vo){
 		staffService.updateStaff(vo);
 		return "getStaffList.do";
 	}

@@ -8,7 +8,7 @@
 <head>
 <script type="text/javascript">
 function Update(form) {
-//alert(seq);
+//alert("실행");
 //var form = document.forms[seq];
 //var form = document.forms.namedItem(seq);
 //alert(form.elements[0].value);
@@ -68,8 +68,8 @@ form.submit();
 </tr>
 <c:forEach items="${customerList}" var="customer">
 <tr>
-	<form id="${customer.customer_num}" method="post">
-	<td>${customer.customer_num}</td>
+	<form method="post">
+	<td><input type="text" name="customer_num" value="${customer.customer_num}"/></td>
 	<%-- <a href="getCustomer.do?customer_num=${customer.customer_num}"></a> --%>
 	<td align="left"><input type="text" name="customer_name" value="${customer.customer_name}"/></td>
 	<td><input type="text" name="customer_phonenum" value="${customer.customer_phonenum}"/></td>
