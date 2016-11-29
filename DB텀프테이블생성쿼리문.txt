@@ -30,11 +30,11 @@ END;
 -- office Table Create SQL
 CREATE TABLE office
 (
-    office_num         INT              NOT NULL, 
-    office_name        VARCHAR2(30)     NULL, 
-    office_address     VARCHAR2(255)    NULL, 
-    office_phonenum    VARCHAR2(20)     NULL, 
-    office_paxnum      VARCHAR2(20)     NULL, 
+    office_num         INT             NOT NULL, 
+    office_name        VARCHAR2(30)    NULL, 
+    office_address     VARCHAR2(40)    NULL, 
+    office_phonenum    INT             NULL, 
+    office_paxnum      INT             NULL, 
     CONSTRAINT OFFICE_PK PRIMARY KEY (office_num)
 )
 /
@@ -43,13 +43,13 @@ CREATE TABLE office
 -- staff Table Create SQL
 CREATE TABLE staff
 (
-    staff_num            VARCHAR2(20)              NOT NULL, 
-    office_num           INT              NOT NULL, 
-    staff_job            VARCHAR2(20)     NULL, 
-    staff_name           VARCHAR2(20)     NULL, 
-    staff_phonenum       VARCHAR2(20)     NULL, 
-    staff_residentnum    VARCHAR2(20)     NULL, 
-    staff_address        VARCHAR2(255)    NULL, 
+    staff_num            VARCHAR2(20)    NOT NULL, 
+    office_num           INT             NOT NULL, 
+    staff_job            VARCHAR2(20)    NULL, 
+    staff_name           VARCHAR2(20)    NULL, 
+    staff_phonenum       INT             NULL, 
+    staff_residentnum    VARCHAR2(20)    NULL, 
+    staff_address        VARCHAR2(40)    NULL, 
     CONSTRAINT STAFF_PK PRIMARY KEY (staff_num)
 )
 /
@@ -63,13 +63,14 @@ ALTER TABLE staff
 -- item Table Create SQL
 CREATE TABLE item
 (
-    item_num            INT              NOT NULL, 
-    item_name           VARCHAR2(30)     NULL, 
-    customer_num        INT              NOT NULL, 
-    receiver_address    VARCHAR2(255)    NULL, 
-    receiver_name       VARCHAR2(20)     NULL, 
-    item_price          INT              NULL, 
-    item_weight         VARCHAR2(20)     NULL, 
+    item_num            INT             NOT NULL, 
+    item_name           VARCHAR2(30)    NULL, 
+    customer_num        INT             NOT NULL, 
+    receiver_address    VARCHAR2(40)    NULL, 
+    receiver_name       VARCHAR2(20)    NULL, 
+    item_price          INT             NULL, 
+    item_weight         VARCHAR2(20)    NULL, 
+    item_seqnum         INT             NOT NULL, 
     CONSTRAINT ITEM_PK PRIMARY KEY (item_num)
 )
 /
@@ -98,31 +99,17 @@ ALTER TABLE item
 -- send Table Create SQL
 CREATE TABLE send
 (
-    send_num          INT             NOT NULL, 
+    send_num          VARCHAR2(20)    NOT NULL, 
     item_num          INT             NOT NULL, 
-    staff_num         VARCHAR2(20)             NOT NULL, 
-    date              VARCHAR2(20)    NULL, 
-    time              VARCHAR2(20)    NULL, 
+    staff_num         INT             NOT NULL, 
+    date              VARCHAR2(20)    NOT NULL, 
+    time              VARCHAR2(20)    NOT NULL, 
     item_position     VARCHAR2(30)    NULL, 
     handling_state    VARCHAR2(20)    NULL, 
     receiver_name     VARCHAR2(20)    NULL, 
+    customer_num      INT             NOT NULL, 
     CONSTRAINT SEND_PK PRIMARY KEY (send_num)
 )
-/
-
-CREATE SEQUENCE send_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER send_send_num_AI_TRG
-BEFORE INSERT ON send 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT send_SEQ.NEXTVAL
-    INTO: NEW.send_num
-    FROM DUAL;
-END;
 /
 
 ALTER TABLE send
@@ -135,6 +122,11 @@ ALTER TABLE send
         REFERENCES staff (staff_num)
 /
 
+ALTER TABLE send
+    ADD CONSTRAINT FK_send_customer_num_customer_ FOREIGN KEY (customer_num)
+        REFERENCES customer (customer_num)
+/
+
 
 -- receipt Table Create SQL
 CREATE TABLE receipt
@@ -142,7 +134,7 @@ CREATE TABLE receipt
     receipt_num     INT             NOT NULL, 
     customer_num    INT             NOT NULL, 
     item_num        INT             NOT NULL, 
-    staff_num       VARCHAR2(20)             NOT NULL, 
+    staff_num       INT             NOT NULL, 
     receipt_date    VARCHAR2(20)    NULL, 
     send_type       VARCHAR2(20)    NULL, 
     pay_type        VARCHAR2(20)    NULL, 
