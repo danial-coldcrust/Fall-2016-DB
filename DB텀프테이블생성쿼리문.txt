@@ -71,7 +71,7 @@ CREATE TABLE send
     item_num          INT             NOT NULL, 
     staff_num         VARCHAR2(20)    NOT NULL, 
     date              DATE            NOT NULL, 
-    time              TIMESTAMP(6)    NOT NULL,
+    time              TIMESTAMP    NOT NULL,
     item_position     VARCHAR2(30)    NULL, 
     handling_state    VARCHAR2(20)    NULL, 
     receiver_name     VARCHAR2(20)    NULL, 
