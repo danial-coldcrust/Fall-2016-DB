@@ -1,6 +1,6 @@
-﻿INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (1, '서울지점', '서울시영등포구', 027830014, 027835801);
-INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (2, '인천지점', '인천시부평구', 0328508100, 0328226009);
-INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (3, '대구지점', '대구광역시수성구', 0536404679, 0536354614);
-INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (4, '대전지점', '대전광역시대덕구', 0422507066, 0422507068);
-INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (5, '광주지점', '광주광역시광산구', 0629492114, 0629411005);
-INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (6, '부산지점', '부산광역시동래구', 0518100700, 0518920026);
+﻿INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (1, '서울지점', '서울시영등포구', '027830014', '027835801');
+INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (2, '인천지점', '인천시부평구', '0328508100', '0328226009');
+INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (3, '대구지점', '대구광역시수성구', '0536404679', '0536354614');
+INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (4, '대전지점', '대전광역시대덕구', '0422507066', '0422507068');
+INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (5, '광주지점', '광주광역시광산구', '0629492114', '0629411005');
+INSERT INTO office (office_num, office_name, office_address, office_phonenum, office_paxnum) VALUES (6, '부산지점', '부산광역시동래구', '0518100700', '0518920026');

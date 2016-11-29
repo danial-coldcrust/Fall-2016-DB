@@ -11,22 +11,6 @@ CREATE TABLE customer
 )
 /
 
-CREATE SEQUENCE customer_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER customer_customer_num_AI_TRG
-BEFORE INSERT ON customer 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT customer_SEQ.NEXTVAL
-    INTO: NEW.customer_num
-    FROM DUAL;
-END;
-/
-
-
 -- office Table Create SQL
 CREATE TABLE office
 (
@@ -47,9 +31,9 @@ CREATE TABLE staff
     office_num           INT             NOT NULL, 
     staff_job            VARCHAR2(20)    NULL, 
     staff_name           VARCHAR2(20)    NULL, 
-    staff_phonenum       INT             NULL, 
+    staff_phonenum       VARCHAR2(30)    NULL, 
     staff_residentnum    VARCHAR2(20)    NULL, 
-    staff_address        VARCHAR2(40)    NULL, 
+    staff_address        VARCHAR2(255)    NULL, 
     CONSTRAINT STAFF_PK PRIMARY KEY (staff_num)
 )
 /
@@ -66,28 +50,12 @@ CREATE TABLE item
     item_num            INT             NOT NULL, 
     item_name           VARCHAR2(30)    NULL, 
     customer_num        INT             NOT NULL, 
-    receiver_address    VARCHAR2(40)    NULL, 
+    receiver_address    VARCHAR2(255)    NULL, 
     receiver_name       VARCHAR2(20)    NULL, 
     item_price          INT             NULL, 
-    item_weight         VARCHAR2(20)    NULL, 
-    item_seqnum         INT             NOT NULL, 
+    item_weight         VARCHAR2(20)    NULL,
     CONSTRAINT ITEM_PK PRIMARY KEY (item_num)
 )
-/
-
-CREATE SEQUENCE item_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER item_item_num_AI_TRG
-BEFORE INSERT ON item 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT item_SEQ.NEXTVAL
-    INTO: NEW.item_num
-    FROM DUAL;
-END;
 /
 
 ALTER TABLE item
@@ -101,7 +69,7 @@ CREATE TABLE send
 (
     send_num          VARCHAR2(20)    NOT NULL, 
     item_num          INT             NOT NULL, 
-    staff_num         INT             NOT NULL, 
+    staff_num         VARCHAR2(20)    NOT NULL, 
     date              VARCHAR2(20)    NOT NULL, 
     time              VARCHAR2(20)    NOT NULL, 
     item_position     VARCHAR2(30)    NULL, 
@@ -141,21 +109,6 @@ CREATE TABLE receipt
     send_pay        INT             NULL, 
     CONSTRAINT RECEIPT_PK PRIMARY KEY (receipt_num)
 )
-/
-
-CREATE SEQUENCE receipt_SEQ
-START WITH 1
-INCREMENT BY 1;
-/
-
-CREATE OR REPLACE TRIGGER receipt_receipt_num_AI_TRG
-BEFORE INSERT ON receipt 
-REFERENCING NEW AS NEW FOR EACH ROW 
-BEGIN 
-    SELECT receipt_SEQ.NEXTVAL
-    INTO: NEW.receipt_num
-    FROM DUAL;
-END;
 /
 
 ALTER TABLE receipt
