@@ -32,9 +32,9 @@ CREATE TABLE office
 (
     office_num         INT             NOT NULL, 
     office_name        VARCHAR2(30)    NULL, 
-    office_address     VARCHAR2(40)    NULL, 
-    office_phonenum    INT             NULL, 
-    office_paxnum      INT             NULL, 
+    office_address     VARCHAR2(255)    NULL, 
+    office_phonenum    VARCHAR2(30)     NULL, 
+    office_paxnum      VARCHAR2(30)     NULL, 
     CONSTRAINT OFFICE_PK PRIMARY KEY (office_num)
 )
 /
@@ -134,7 +134,7 @@ CREATE TABLE receipt
     receipt_num     INT             NOT NULL, 
     customer_num    INT             NOT NULL, 
     item_num        INT             NOT NULL, 
-    staff_num       INT             NOT NULL, 
+    staff_num       VARCHAR2(20)    NOT NULL, 
     receipt_date    VARCHAR2(20)    NULL, 
     send_type       VARCHAR2(20)    NULL, 
     pay_type        VARCHAR2(20)    NULL, 
