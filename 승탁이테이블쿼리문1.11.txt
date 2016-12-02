@@ -1,0 +1,112 @@
+﻿CREATE TABLE customer
+(
+    customer_num         INT             NOT NULL, 
+    customer_name        VARCHAR2(20)    NULL, 
+    customer_phonenum    VARCHAR2(20)    NULL, 
+    customer_address     VARCHAR2(40)    NULL, 
+    CONSTRAINT CUSTOMER_PK PRIMARY KEY (customer_num)
+)
+
+CREATE TABLE office
+(
+    office_num         INT             NOT NULL, 
+    office_name        VARCHAR2(30)    NULL, 
+    office_address     VARCHAR2(255)    NULL, 
+    office_phonenum    VARCHAR2(30)     NULL, 
+    office_paxnum      VARCHAR2(30)     NULL, 
+    CONSTRAINT OFFICE_PK PRIMARY KEY (office_num)
+)
+
+CREATE TABLE staff
+(
+    staff_num            VARCHAR2(20)    NOT NULL, 
+    office_num           INT             NOT NULL, 
+    staff_job            VARCHAR2(20)    NULL, 
+    staff_name           VARCHAR2(20)    NULL, 
+    staff_phonenum       VARCHAR2(30)    NULL, 
+    staff_residentnum    VARCHAR2(20)    NULL, 
+    staff_address        VARCHAR2(255)    NULL, 
+    CONSTRAINT STAFF_PK PRIMARY KEY (staff_num)
+)
+
+ALTER TABLE staff
+    ADD CONSTRAINT FK_staff_office_num_office_off FOREIGN KEY (office_num)
+        REFERENCES office (office_num)
+
+
+CREATE TABLE item
+(
+    item_num            INT             NOT NULL, 
+    item_name           VARCHAR2(30)    NULL, 
+    customer_num        INT             NOT NULL, 
+    receiver_address    VARCHAR2(255)    NULL, 
+    receiver_name       VARCHAR2(20)    NULL, 
+    item_price          INT             NULL, 
+    item_weight         VARCHAR2(20)    NULL,
+    CONSTRAINT ITEM_PK PRIMARY KEY (item_num)
+);
+
+CREATE SEQUENCE item_SEQ
+START WITH 1
+INCREMENT BY 1;
+
+ALTER TABLE item
+    ADD CONSTRAINT FK_item_customer_num_customer_ FOREIGN KEY (customer_num)
+        REFERENCES customer (customer_num);
+
+CREATE TABLE send
+(
+    send_num          VARCHAR2(20)    NOT NULL, 
+    item_num          INT             NOT NULL, 
+    staff_num         VARCHAR2(20)    NOT NULL, 
+    date              DATE            NOT NULL, 
+    time              TIMESTAMP    NOT NULL,
+    item_position     VARCHAR2(30)    NULL, 
+    handling_state    VARCHAR2(20)    NULL, 
+    receiver_name     VARCHAR2(20)    NULL, 
+    customer_num      INT             NOT NULL, 
+    CONSTRAINT SEND_PK PRIMARY KEY (send_num)
+)
+
+
+ALTER TABLE send
+    ADD CONSTRAINT FK_send_item_num_item_item_num FOREIGN KEY (item_num)
+        REFERENCES item (item_num)
+
+
+ALTER TABLE send
+    ADD CONSTRAINT FK_send_staff_num_staff_staff_ FOREIGN KEY (staff_num)
+        REFERENCES staff (staff_num)
+
+
+ALTER TABLE send
+    ADD CONSTRAINT FK_send_customer_num_customer_ FOREIGN KEY (customer_num)
+        REFERENCES customer (customer_num)
+
+
+
+
+CREATE TABLE receipt
+(
+    receipt_num     VARCHAR2(40)    NOT NULL, 
+    customer_num    INT             NOT NULL, 
+    item_num        INT             NOT NULL, 
+    staff_num       VARCHAR2(20)    NOT NULL, 
+    receipt_date    VARCHAR2(20)    NULL, 
+    send_type       VARCHAR2(20)    NULL, 
+    pay_type        VARCHAR2(20)    NULL, 
+    send_pay        INT             NULL, 
+    CONSTRAINT RECEIPT_PK PRIMARY KEY (receipt_num)
+);
+
+ALTER TABLE receipt
+    ADD CONSTRAINT FK_receipt_customer_num_custom FOREIGN KEY (customer_num)
+        REFERENCES customer (customer_num);
+
+ALTER TABLE receipt
+    ADD CONSTRAINT FK_receipt_item_num_item_item_ FOREIGN KEY (item_num)
+        REFERENCES item (item_num);
+
+ALTER TABLE receipt
+    ADD CONSTRAINT FK_receipt_staff_num_staff_sta FOREIGN KEY (staff_num)
+        REFERENCES staff (staff_num);
